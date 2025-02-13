@@ -127,7 +127,6 @@ public class OrderController {
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userNotFound(user_id));
         }
 
-
         List<Map<String, Object>> itemsList = (List<Map<String, Object>>) request.get("items");
         Map<Integer, Integer> productQuantityMap = new HashMap<>();
         for (Map<String, Object> item : itemsList) {
