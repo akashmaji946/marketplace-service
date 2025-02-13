@@ -1,0 +1,3 @@
+2025-02-13 23:16:51.424588+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPRODUCTS  ORDER_ITEMS"; SQL statement:
+SELECT * FROMPRODUCTS  ORDER_ITEMS [42000-232]
