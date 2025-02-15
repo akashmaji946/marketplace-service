@@ -38,203 +38,173 @@ curl -X PUT "http://localhost:8081/wallets/20" \
      -H "Content-Type: application/json" \
      -d '{"action": "debit", "amount": 129000}'
 
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1001,
+    "items": [
+      { "product_id": 101, "quantity": 2 },
+      { "product_id": 102, "quantity": 1 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 20,
-              "items": [
-                { "product_id": 103, "quantity": 1 },
-                { "product_id": 104, "quantity": 2 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1002,
+    "items": [
+      { "product_id": 103, "quantity": 1 },
+      { "product_id": 104, "quantity": 3 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 21,
-              "items": [
-                { "product_id": 105, "quantity": 3 },
-                { "product_id": 103, "quantity": 2 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1003,
+    "items": [
+      { "product_id": 105, "quantity": 2 },
+      { "product_id": 106, "quantity": 1 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 23,
-              "items": [
-                { "product_id": 104, "quantity": 1 },
-                { "product_id": 105, "quantity": 3 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1004,
+    "items": [
+      { "product_id": 107, "quantity": 1 },
+      { "product_id": 108, "quantity": 2 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 24,
-              "items": [
-                { "product_id": 103, "quantity": 2 },
-                { "product_id": 104, "quantity": 3 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1005,
+    "items": [
+      { "product_id": 109, "quantity": 3 },
+      { "product_id": 110, "quantity": 1 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 20,
-              "items": [
-                { "product_id": 105, "quantity": 1 },
-                { "product_id": 103, "quantity": 3 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1006,
+    "items": [
+      { "product_id": 111, "quantity": 1 },
+      { "product_id": 112, "quantity": 2 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 21,
-              "items": [
-                { "product_id": 104, "quantity": 2 },
-                { "product_id": 105, "quantity": 1 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1007,
+    "items": [
+      { "product_id": 113, "quantity": 2 },
+      { "product_id": 114, "quantity": 1 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 23,
-              "items": [
-                { "product_id": 103, "quantity": 1 },
-                { "product_id": 104, "quantity": 3 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1008,
+    "items": [
+      { "product_id": 115, "quantity": 1 },
+      { "product_id": 116, "quantity": 3 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 24,
-              "items": [
-                { "product_id": 105, "quantity": 2 },
-                { "product_id": 103, "quantity": 1 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1009,
+    "items": [
+      { "product_id": 117, "quantity": 2 },
+      { "product_id": 118, "quantity": 1 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 20,
-              "items": [
-                { "product_id": 104, "quantity": 3 },
-                { "product_id": 105, "quantity": 1 }
-              ]
-            }'
+curl -i -X POST http://localhost:8082/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1010,
+    "items": [
+      { "product_id": 119, "quantity": 1 },
+      { "product_id": 120, "quantity": 2 }
+    ]
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 21,
-              "items": [
-                { "product_id": 103, "quantity": 2 },
-                { "product_id": 104, "quantity": 1 }
-              ]
-            }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 23,
-              "items": [
-                { "product_id": 105, "quantity": 3 },
-                { "product_id": 103, "quantity": 2 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5001 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5001,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 24,
-              "items": [
-                { "product_id": 104, "quantity": 1 },
-                { "product_id": 105, "quantity": 2 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5002 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5002,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 20,
-              "items": [
-                { "product_id": 103, "quantity": 3 },
-                { "product_id": 104, "quantity": 2 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5003 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5003,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 21,
-              "items": [
-                { "product_id": 105, "quantity": 1 },
-                { "product_id": 103, "quantity": 3 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5004 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5004,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 23,
-              "items": [
-                { "product_id": 104, "quantity": 2 },
-                { "product_id": 105, "quantity": 1 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5005 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5005,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 24,
-              "items": [
-                { "product_id": 103, "quantity": 1 },
-                { "product_id": 104, "quantity": 3 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5006 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5006,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 20,
-              "items": [
-                { "product_id": 105, "quantity": 2 },
-                { "product_id": 103, "quantity": 1 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5007 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5007,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 21,
-              "items": [
-                { "product_id": 104, "quantity": 3 },
-                { "product_id": 105, "quantity": 1 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5008 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5008,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 23,
-              "items": [
-                { "product_id": 103, "quantity": 2 },
-                { "product_id": 104, "quantity": 1 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5009 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5009,
+    "status": "DELIVERED"
+  }'
 
-curl -X POST -i http://localhost:8082/orders \
-     -H "Content-Type: application/json" \
-     -d '{
-              "user_id": 24,
-              "items": [
-                { "product_id": 105, "quantity": 3 },
-                { "product_id": 103, "quantity": 2 }
-              ]
-            }'
+curl -i -X PUT http://localhost:8082/orders/5010 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "order_id": 5010,
+    "status": "DELIVERED"
+  }'

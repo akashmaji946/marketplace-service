@@ -118,12 +118,14 @@ public class OrderController {
 
     }
 
-    @PostMapping("orders")
+    @PostMapping("/orders")
     public ResponseEntity<?> createOrder(@RequestBody Map<String, Object> request){
 
         Integer user_id = Integer.parseInt(request.get("user_id").toString());
+        System.out.println("USER ID: " + user_id);
         boolean userExists = getUserById(user_id, false);
         if(!userExists){
+            System.out.println("NOT HERE");
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userNotFound(user_id));
         }
 
@@ -179,6 +181,9 @@ public class OrderController {
 
         // check if user has sufficient balance
         Integer balance = getUserBalanceById(user_id);
+        if(balance == -1){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with id=" + user_id + " has NO wallet. Please create wallet first.");
+        }
         if(balance < totalPrice){
             return   ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userInsufficientFunds(user_id, totalPrice, balance));
         }
@@ -214,6 +219,21 @@ public class OrderController {
 
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internel Error! This is on us.");
+    }
+
+    @DeleteMapping("/marketplace")
+    public ResponseEntity<?> deleteAll(){
+        orderRepository.deleteAllPlaced();
+        return ResponseEntity.status(HttpStatus.OK).body("All Placed Orders Cancelled.");
+    }
+
+    @DeleteMapping("/marketplace/users/{id}")
+    public ResponseEntity<?> deleteAllPlacedForUser(@PathVariable Integer id){
+        Integer count =  orderRepository.deleteAllPlacedForUser(id);
+        if(count == 0){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No PLACED Order Found for User with id=" + id);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("All PLACED Orders CANCELLED for User with id=" + id);
     }
 
     private boolean updateWallet(Integer user_id, Integer newBalance, String type) {
@@ -296,7 +316,7 @@ public class OrderController {
             }
         catch (RestClientException e) {
             System.out.println(e.getMessage());
-            throw e;
+            return -1;
         }
             return -1;
     }
@@ -307,6 +327,7 @@ public class OrderController {
             Map<String,Integer> productQuantityMap = new HashMap<>();
             productQuantityMap.put("product_id", orderItem.getProduct_id());
             productQuantityMap.put("quantity", orderItem.getQuantity());
+            productQuantityMap.put("id", orderItem.getId());
 
             orderItemList.add(productQuantityMap);
         }
