@@ -32,4 +32,8 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Modifying
     @Query("UPDATE Order o SET o.status='CANCELLED' WHERE o.status='PLACED' and o.user_id=:id")
     Integer deleteAllPlacedForUser(Integer id);
+
+    @Transactional
+    @Query("SELECT o FROM Order o WHERE o.status='PLACED' and o.user_id=:id")
+    List<Order> getPlacedOrdersForUser(Integer id);
 }

@@ -99,3 +99,15 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 16 more
+2025-02-17 14:46:54.594145+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPRODUCTS  ORDER_ITEMS"; SQL statement:
+SELECT * FROMPRODUCTS  ORDER_ITEMS [42000-232]
+2025-02-17 14:46:56.849100+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPRODUCTS  ORDER_ITEMS"; SQL statement:
+SELECT * FROMPRODUCTS  ORDER_ITEMS [42000-232]
+2025-02-17 14:46:58.753696+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPRODUCTS  ORDER_ITEMS"; SQL statement:
+SELECT * FROMPRODUCTS  ORDER_ITEMS [42000-232]
+2025-02-17 14:46:59.746614+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPRODUCTS  ORDER_ITEMS"; SQL statement:
+SELECT * FROMPRODUCTS  ORDER_ITEMS [42000-232]

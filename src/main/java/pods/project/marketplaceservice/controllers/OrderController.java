@@ -3,6 +3,7 @@ package pods.project.marketplaceservice.controllers;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
@@ -22,6 +23,9 @@ public class OrderController {
     private final OrderRepository orderRepository;
     private final ProductsRepository productsRepository;
     private RestTemplate restTemplate;
+
+    @Value("${host.url}")
+    String localhost;
 
     @Autowired
     public OrderController(OrderRepository orderRepository, ProductsRepository productsRepository) {
@@ -229,15 +233,38 @@ public class OrderController {
 
     @DeleteMapping("/marketplace/users/{id}")
     public ResponseEntity<?> deleteAllPlacedForUser(@PathVariable Integer id){
-        Integer count =  orderRepository.deleteAllPlacedForUser(id);
-        if(count == 0){
+//        Integer count =  orderRepository.deleteAllPlacedForUser(id);
+//        if(count == 0){
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No PLACED Order Found for User with id=" + id);
+//        }
+
+        List<Order> orders =  orderRepository.getPlacedOrdersForUser(id);
+        if(orders.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No PLACED Order Found for User with id=" + id);
         }
+        for(Order order : orders){
+            order.setStatus("CANCELLED");
+            orderRepository.save(order);
+            Integer user_id = order.getUser_id();
+            Integer total_price = order.getTotal_price();
+            updateWallet(user_id, total_price, "credit");
+            List<OrderItem> orderItems =  order.getItems();
+            for(OrderItem orderItem : orderItems){
+                Integer quantity = orderItem.getQuantity();
+                Integer product_id = orderItem.getProduct_id();
+                List<Product> products =  productsRepository.findProductByIdIs(product_id);
+                Integer old_quantity = products.get(0).getStock_quantity();
+                productsRepository.updateQuantity(product_id, old_quantity + quantity);
+
+            }
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body("All PLACED Orders CANCELLED for User with id=" + id);
     }
 
     private boolean updateWallet(Integer user_id, Integer newBalance, String type) {
-        String url = "http://localhost:8081/wallets/" + user_id;
+        String url = "http://" + localhost +":8081/wallets/" + user_id;
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -287,7 +314,7 @@ public class OrderController {
     }
 
     private Integer getUserBalanceById(Integer user_id) {
-        String url = "http://localhost:8081/wallets/" + user_id;
+        String url = "http://" + localhost +":8081/wallets/" + user_id;
 
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
 
@@ -354,7 +381,7 @@ public class OrderController {
     }
 
     private boolean updateProducts(Integer order_id, List<Map<String, Integer>> discountAvailed) {
-        String url = "http://localhost:8082/products";
+        String url = "http://" + localhost +":8082/products";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -382,7 +409,7 @@ public class OrderController {
     }
 
     private boolean updateUser(Integer userId, boolean discountAvailed) {
-        String url = "http://localhost:8080/users";
+        String url = "http://" + localhost +":8080/users";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -432,7 +459,7 @@ public class OrderController {
 
 
     public boolean getUserById(Integer user_id, boolean discountCheck) {
-        String url = "http://localhost:8080/users/" + user_id;
+        String url = "http://" + localhost +":8080/users/" + user_id;
 
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.APPLICATION_JSON);
@@ -476,7 +503,7 @@ public class OrderController {
     }
 
 //    public boolean getUserStatusById(Integer user_id) {
-//        String url = "http://localhost:8080/users/discount" + user_id;
+//        String url = "http://" + localhost +":8080/users/discount" + user_id;
 //
 //        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
 //
