@@ -263,7 +263,7 @@ public class OrderController {
     }
 
     private boolean updateWallet(Integer user_id, Integer newBalance, String type) {
-        String url = "http://" + localhost +":8081/wallets/" + user_id;
+        String url = "http://" + localhost +":8082/wallets/" + user_id;
 
 
         HttpHeaders headers = new HttpHeaders();
@@ -314,7 +314,7 @@ public class OrderController {
     }
 
     private Integer getUserBalanceById(Integer user_id) {
-        String url = "http://" + localhost +":8081/wallets/" + user_id;
+        String url = "http://" + localhost +":8082/wallets/" + user_id;
 
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
 
@@ -381,7 +381,7 @@ public class OrderController {
     }
 
     private boolean updateProducts(Integer order_id, List<Map<String, Integer>> discountAvailed) {
-        String url = "http://" + localhost +":8082/products";
+        String url = "http://" + localhost +":8081/products";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
